@@ -1,0 +1,44 @@
+.mmenu_container {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .mmenu_container {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: -800px;
+    background-color: #e95e51;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+    transition: all 0.5s;
+  }
+  .mmenu_active {
+    left: 0;
+    transition: all 0.5s;
+  }
+
+  .mmenu__span {
+    color: white;
+    font-weight: 600;
+  }
+
+  .mmenu__middle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .mmenu_avater {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+}

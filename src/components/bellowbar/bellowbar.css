@@ -1,0 +1,36 @@
+.bellow__container {
+  height: 60px;
+  display: flex;
+  width: 100%;
+  margin-bottom: 30px;
+  align-items: center;
+  box-shadow: 2px 10px 18px 5px rgba(0, 0, 0, 0.13);
+  -webkit-box-shadow: 2px 10px 18px 5px rgba(0, 0, 0, 0.13);
+  -moz-box-shadow: 2px 10px 18px 5px rgba(0, 0, 0, 0.13);
+}
+
+.bellow__left {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  flex: 5;
+}
+
+.bellow__middle {
+  display: flex;
+  gap: 30px;
+}
+.bellow__span {
+  border-bottom: 2px solid #fff;
+  cursor: pointer;
+}
+
+.bellow__span:hover {
+  border-color: #e95e51;
+}
+
+@media only screen and (max-width: 600px) {
+  .bellow__container {
+    display: none;
+  }
+}

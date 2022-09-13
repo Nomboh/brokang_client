@@ -1,0 +1,37 @@
+.sw_container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  padding: 30px 10px;
+  width: 100%;
+}
+
+.sw_details {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.sw_value {
+  align-self: right;
+  display: block;
+  font-weight: 600;
+}
+.sw_name {
+  align-self: center;
+  margin-top: 10px;
+}
+
+.sw_stars {
+  margin-top: 3px;
+  display: flex;
+  justify-content: flex-end;
+
+  width: 100%;
+}
+.sw_star {
+  cursor: pointer;
+  color: orange;
+}

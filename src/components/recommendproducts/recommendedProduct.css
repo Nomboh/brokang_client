@@ -1,0 +1,17 @@
+.rp_container {
+  margin-bottom: 20px;
+}
+
+.rp_header {
+  margin-bottom: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+  .rp_container {
+    margin-bottom: 0px;
+  }
+
+  .rp_header {
+    margin-bottom: 20px;
+  }
+}
