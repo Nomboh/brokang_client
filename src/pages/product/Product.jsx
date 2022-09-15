@@ -22,6 +22,10 @@ function Product() {
   const { data } = useFetch(`product/${url}`);
 
   useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [currentProduct]);
+
+  useEffect(() => {
     if (!currentProduct) {
       setCurrentProduct(data?.product);
     }

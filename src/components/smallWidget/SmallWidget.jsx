@@ -8,7 +8,6 @@ import useFetch from "../../hooks/useFetch";
 function SmallWidget({ currentProduct, numberOfProducts }) {
   const { data: seller } = useFetch("user/" + currentProduct?.userId);
 
-  console.log(currentProduct);
   return (
     <div className="sw_container">
       <Avatar

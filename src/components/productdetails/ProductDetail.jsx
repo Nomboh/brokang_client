@@ -1,11 +1,18 @@
 import "./productdetail.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { useAuth } from "../../context/auth/AuthContext";
+import axiosInstance from "../../utils/axiosInstance";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import moment from "moment/moment";
 
 function ProductDetail({ currentProduct }) {
   const [index, setIndex] = useState(0);
+  const [isFavourite, setIsFavourite] = useState(false);
+
+  const { user } = useAuth();
 
   const moveImage = direction => {
     const totalImages = currentProduct?.images.length;
@@ -18,7 +25,25 @@ function ProductDetail({ currentProduct }) {
     }
   };
 
-  const handleFavourite = () => {};
+  useEffect(() => {
+    setIsFavourite(currentProduct?.likes.includes(user?._id));
+  }, [currentProduct, user?._id]);
+
+  const handleFavourite = async () => {
+    try {
+      const { data } = await axiosInstance().put(
+        `/product/${currentProduct?._id}/likes`
+      );
+
+      if (data?.message === "liked") {
+        setIsFavourite(true);
+      } else {
+        setIsFavourite(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="pd_container">
@@ -89,7 +114,9 @@ function ProductDetail({ currentProduct }) {
             </div>
           </div>
 
-          <div className="pd_duration">3 days ago</div>
+          <div className="pd_duration">
+            {moment(currentProduct?.createdAt).from()}
+          </div>
         </div>
 
         <div className="pd_price_wrapper">
@@ -150,7 +177,11 @@ function ProductDetail({ currentProduct }) {
 
         <div className="pd_buttons">
           <div className="pd_favourite" onClick={handleFavourite}>
-            <FavoriteBorderIcon color="primary" />
+            {isFavourite ? (
+              <FavoriteIcon color="primary" />
+            ) : (
+              <FavoriteBorderIcon color="primary" />
+            )}
           </div>
           <button className="pd_btn_talk">Brokang Talk</button>
           <button className="pd_btn_pay">Brokang Pay</button>

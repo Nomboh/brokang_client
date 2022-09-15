@@ -18,7 +18,7 @@ function Bellowbar() {
       </div>
 
       <div className="bellow__right">
-        <Button sx={{ height: "60px" }} variant="contained">
+        <Button href="/sell" sx={{ height: "60px" }} variant="contained">
           Sell Your Items
         </Button>
       </div>
