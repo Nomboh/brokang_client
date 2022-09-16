@@ -142,17 +142,7 @@ function Sell() {
               </label>
             </div>
             <div className="sell_inputs_wrapper">
-              <div className="sell_price">
-                <input
-                  className="sell_text_input sell_price_input"
-                  placeholder="Enter the product price"
-                  type="number"
-                  name="name"
-                  id="name"
-                />
-
-                <span>won</span>
-              </div>
+              <div className="sell_tag"></div>
             </div>
           </div>
         </form>
