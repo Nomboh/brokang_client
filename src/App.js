@@ -5,8 +5,12 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import Product from "./pages/product/Product";
 import Login from "./pages/login/Login";
 import Sell from "./pages/sell/Sell";
+import { useAuth } from "./context/auth/AuthContext";
+import ProtectedRoute from "./utils/ProtectedRoute";
+import Seller from "./pages/seller/Seller";
 
 function App() {
+  const { user } = useAuth();
   const theme = createTheme({
     palette: {
       primary: {
@@ -21,7 +25,15 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<Product />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/sell" element={<Sell />} />
+          <Route path="/seller/:id" element={<Seller />} />
+          <Route
+            path="/sell"
+            element={
+              <ProtectedRoute isAllowed={!!user}>
+                <Sell />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </ThemeProvider>
     </div>

@@ -20,7 +20,7 @@ function Card({ product, cardSm }) {
             <p className={cardSm ? "card_name card_name_sm" : "card_name"}>
               {truncate(
                 product.name,
-                window.innerWidth || cardSm < 800 ? 2 : 4
+                window.innerWidth < 800 || cardSm ? 2 : 4
               )}
             </p>
             <h2 className={cardSm ? "card_price card_price_sm" : "card_price"}>

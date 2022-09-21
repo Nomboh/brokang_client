@@ -8,6 +8,7 @@ import React, { useRef, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import Card from "../card/Card";
 import SmallWidget from "../smallWidget/SmallWidget";
+import { Link } from "react-router-dom";
 
 function ProductWidget({ currentProduct }) {
   const { data } = useFetch(
@@ -37,9 +38,11 @@ function ProductWidget({ currentProduct }) {
       <div className="pw_left">
         <div className="pw_title">
           <h2 className="pw_heading">Seller's other products</h2>
-          <div className="pw_viewall">
-            View All <ChevronRightIcon />
-          </div>
+          <Link to={`/seller/${currentProduct?.userId}`}>
+            <div className="pw_viewall">
+              View All <ChevronRightIcon />
+            </div>
+          </Link>
         </div>
         <div className="pw_grid">
           <div className="grid_sm">
@@ -72,7 +75,7 @@ function ProductWidget({ currentProduct }) {
         <div className="pw_desc">
           <h2 className="pw_heading">Product Detailed Description</h2>
 
-          <div>{currentProduct?.description}</div>
+          <div className="pw_description">{currentProduct?.description}</div>
         </div>
 
         <div className="pw_tag">

@@ -7,10 +7,13 @@ import { useAuth } from "../../context/auth/AuthContext";
 import axiosInstance from "../../utils/axiosInstance";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import moment from "moment/moment";
+import { useNavigate } from "react-router-dom";
 
 function ProductDetail({ currentProduct }) {
   const [index, setIndex] = useState(0);
   const [isFavourite, setIsFavourite] = useState(false);
+
+  const navigate = useNavigate();
 
   const { user } = useAuth();
 
@@ -30,18 +33,22 @@ function ProductDetail({ currentProduct }) {
   }, [currentProduct, user?._id]);
 
   const handleFavourite = async () => {
-    try {
-      const { data } = await axiosInstance().put(
-        `/product/${currentProduct?._id}/likes`
-      );
+    if (user) {
+      try {
+        const { data } = await axiosInstance().put(
+          `/product/${currentProduct?._id}/likes`
+        );
 
-      if (data?.message === "liked") {
-        setIsFavourite(true);
-      } else {
-        setIsFavourite(false);
+        if (data?.message === "liked") {
+          setIsFavourite(true);
+        } else {
+          setIsFavourite(false);
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
+    } else {
+      navigate("/login");
     }
   };
 
@@ -108,9 +115,11 @@ function ProductDetail({ currentProduct }) {
           <div className="pd_right_top_chips">
             <div className="pd_chips">{currentProduct?.status}</div>
             <div className="pd_chips">
-              {currentProduct?.shipping[0]?.burden === "seller"
-                ? "Shipping not included"
-                : "shipping included"}
+              {currentProduct?.shipping[0]?.deliveryFee === "free Shipping"
+                ? "Free Shipping"
+                : currentProduct?.shipping[0]?.deliveryFee === "2900"
+                ? "Shipping Included"
+                : "Shipping Not Included"}
             </div>
           </div>
 

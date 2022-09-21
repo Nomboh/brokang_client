@@ -71,6 +71,12 @@
   gap: 20px;
 }
 
+.pw_description {
+  white-space: pre-wrap;
+  line-height: 1.7;
+  font-size: 18px;
+}
+
 .pw_tag {
   display: flex;
   flex-direction: column;
@@ -122,5 +128,10 @@
   }
   .pw_tag {
     margin-bottom: 50px;
+  }
+  .pw_description {
+    white-space: pre-wrap;
+    line-height: 1.6;
+    font-size: 16px;
   }
 }
