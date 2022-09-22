@@ -1,0 +1,58 @@
+.seller_container {
+  display: flex;
+  gap: 30px;
+}
+
+.seller_left {
+  flex: 2;
+  width: 100%;
+}
+
+.seller_right {
+  flex: 5;
+  width: 100%;
+}
+
+.sr_top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.sr_search {
+  display: flex;
+  gap: 10px;
+}
+
+.sr_search_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.sr_input {
+  border: none;
+}
+
+.sr_select {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.sr_select:focus {
+  outline: none;
+}
+
+.sr_input:focus {
+  outline: none;
+}
+
+.sr_option {
+  text-transform: capitalize;
+}

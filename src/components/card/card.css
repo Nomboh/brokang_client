@@ -35,6 +35,10 @@
 .card_name {
   margin-bottom: 10px;
 }
+
+.card_price {
+  font-size: 22px;
+}
 .grid {
   width: 100%;
   margin-bottom: 50px;

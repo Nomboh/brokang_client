@@ -5,8 +5,8 @@ import React from "react";
 import { Avatar } from "@mui/material";
 import useFetch from "../../hooks/useFetch";
 
-function SmallWidget({ currentProduct, numberOfProducts }) {
-  const { data: seller } = useFetch("user/" + currentProduct?.userId);
+function SmallWidget({ userId, numberOfProducts }) {
+  const { data: seller } = useFetch("user/" + userId);
 
   return (
     <div className="sw_container">
@@ -28,7 +28,7 @@ function SmallWidget({ currentProduct, numberOfProducts }) {
 
       <div className="sw_details">
         <span className="sw_item">Transaction review</span>
-        <span className="sw_value">({currentProduct?.reviews?.length})</span>
+        <span className="sw_value">(0)</span>
       </div>
       <div className="sw_stars">
         <StarIcon className="sw_star" />

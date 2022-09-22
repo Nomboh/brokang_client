@@ -102,7 +102,7 @@ function ProductWidget({ currentProduct }) {
 
       <div className="pw_right">
         <SmallWidget
-          currentProduct={currentProduct}
+          userId={currentProduct?.userId}
           numberOfProducts={data?.length}
         />
       </div>
