@@ -44,22 +44,13 @@ function Seller() {
               All ({searchQuery ? data?.length : pdt?.length}) Products
             </h3>
             <div className="sr_search">
-              <select
-                className="sr_select"
-                onChange={() => {}}
-                name="categories"
-                id="categories"
-              >
-                <option value={""}>All Categories</option>
-              </select>
-
               <div className="sr_search_wrapper">
                 <input
                   className="sr_input"
                   type="text"
                   name="search"
                   value={searchQuery}
-                  onChange={e => setSearchQuery(e.target.value)}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   id="search"
                 />
                 <Search color="action" sx={{ cursor: "pointer" }} />
@@ -71,7 +62,7 @@ function Seller() {
             <div className="grid">
               <div className="grid_items">
                 {data &&
-                  data?.products.map(product => {
+                  data?.products.map((product) => {
                     return <Card product={product} key={product._id} />;
                   })}
               </div>
