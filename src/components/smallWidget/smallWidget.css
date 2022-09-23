@@ -35,3 +35,32 @@
   cursor: pointer;
   color: orange;
 }
+
+.sw_button_wrapper{
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.sw_btn_outline{
+  padding: 5px 8px;
+  border-radius: 20px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+}
+
+.sw_talk{
+  border: 1px solid #9c9c9c;
+  color: #9c9c9c;
+}
+
+.sw_follow{
+  border: 1px solid #e95e51;
+  color: #e95e51;
+}
