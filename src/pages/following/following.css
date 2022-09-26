@@ -1,0 +1,27 @@
+.following_container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.follow_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fl_info {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.fl_info_qty {
+  margin-top: 10px;
+}
+
+.fl_info_qty span {
+  font-weight: 700;
+  margin-left: 20px;
+}

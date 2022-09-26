@@ -6,3 +6,14 @@ export const truncate = (str, words) => {
     return str;
   }
 };
+
+export const getProductQty = (stats, userId) => {
+  let count;
+  stats?.forEach(item => {
+    if (item._id === userId) {
+      count = item.count;
+    }
+  });
+
+  return count;
+};

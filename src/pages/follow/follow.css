@@ -1,0 +1,18 @@
+.follow_container {
+  display: flex;
+  gap: 50px;
+}
+
+.follow_left {
+  flex: 2;
+}
+
+.follow_right {
+  flex: 5;
+}
+
+@media only screen and (max-width: 600px) {
+  .follow_container {
+    flex-direction: column;
+  }
+}

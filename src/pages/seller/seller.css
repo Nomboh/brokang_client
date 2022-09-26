@@ -56,3 +56,15 @@
 .sr_option {
   text-transform: capitalize;
 }
+
+@media only screen and (max-width: 600px) {
+  .seller_container {
+    flex-direction: column;
+  }
+
+  .pagination_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

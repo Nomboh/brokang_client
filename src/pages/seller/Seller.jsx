@@ -12,6 +12,7 @@ import SmallWidget from "../../components/smallWidget/SmallWidget";
 import { Search } from "@mui/icons-material";
 import Card from "../../components/card/Card";
 import { Pagination } from "@mui/material";
+import { useEffect } from "react";
 
 function Seller() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,7 +23,9 @@ function Seller() {
     `/product/sellerProducts/${sellerId}?sort=-createdAt&search=${searchQuery}&page=${page}&limit=${limit}`
   );
 
-  const { data: pdt } = useFetch(`/product/sellerProducts/${sellerId}`);
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [data]);
 
   const handleChange = (e, v) => {
     setPage(v);
@@ -36,12 +39,16 @@ function Seller() {
       <Mmenu />
       <div className="seller_container">
         <div className="seller_left">
-          <SmallWidget numberOfProducts={pdt?.length} userId={sellerId} />
+          <SmallWidget
+            buttons={true}
+            numberOfProducts={data?.totalProducts}
+            userId={sellerId}
+          />
         </div>
         <div className="seller_right">
           <div className="sr_top">
             <h3 className="sr_title">
-              All ({searchQuery ? data?.length : pdt?.length}) Products
+              All ({searchQuery ? data?.length : data?.totalProducts}) Products
             </h3>
             <div className="sr_search">
               <div className="sr_search_wrapper">
@@ -49,8 +56,9 @@ function Seller() {
                   className="sr_input"
                   type="text"
                   name="search"
+                  placeholder="search products"
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={e => setSearchQuery(e.target.value)}
                   id="search"
                 />
                 <Search color="action" sx={{ cursor: "pointer" }} />
@@ -62,7 +70,7 @@ function Seller() {
             <div className="grid">
               <div className="grid_items">
                 {data &&
-                  data?.products.map((product) => {
+                  data?.products.map(product => {
                     return <Card product={product} key={product._id} />;
                   })}
               </div>
@@ -70,12 +78,12 @@ function Seller() {
           </div>
 
           <div className="pagination_wrapper">
-            {data && pdt && (
+            {data && (
               <Pagination
                 count={
                   searchQuery
                     ? Math.ceil(data?.length / limit)
-                    : Math.ceil(pdt?.length / limit)
+                    : Math.ceil(data?.totalProducts / limit)
                 }
                 page={page}
                 onChange={handleChange}

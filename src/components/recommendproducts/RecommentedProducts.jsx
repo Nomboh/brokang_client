@@ -5,7 +5,7 @@ import useFetch from "../../hooks/useFetch";
 import Card from "../card/Card";
 
 function RecommentedProducts({ productId }) {
-  const { data } = useFetch(
+  const { data, reFetch } = useFetch(
     `product/recommendedProducts/${productId}?limit=16&sort=-createdAt`
   );
 
@@ -17,7 +17,12 @@ function RecommentedProducts({ productId }) {
         <div className="grid_items">
           {data &&
             data?.products.map(product => (
-              <Card product={product} key={product._id} />
+              <Card
+                product={product}
+                key={product._id}
+                showFavorite={true}
+                reFetch={reFetch}
+              />
             ))}
         </div>
       </div>

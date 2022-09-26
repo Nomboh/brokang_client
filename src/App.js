@@ -8,6 +8,10 @@ import Sell from "./pages/sell/Sell";
 import { useAuth } from "./context/auth/AuthContext";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import Seller from "./pages/seller/Seller";
+import Store from "./pages/store/Store";
+import Follow from "./pages/follow/Follow";
+import Follower from "./pages/follower/Follower";
+import Following from "./pages/following/Following";
 
 function App() {
   const { user } = useAuth();
@@ -26,6 +30,11 @@ function App() {
           <Route path="/product/:id" element={<Product />} />
           <Route path="/login" element={<Login />} />
           <Route path="/seller/:id" element={<Seller />} />
+          <Route path="/store" element={<Store />} />
+          <Route element={<Follow />}>
+            <Route path="follower" element={<Follower />} />
+            <Route path="following" element={<Following />} />
+          </Route>
           <Route
             path="/sell"
             element={
