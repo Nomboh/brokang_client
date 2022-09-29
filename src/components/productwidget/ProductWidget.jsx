@@ -11,7 +11,7 @@ import SmallWidget from "../smallWidget/SmallWidget";
 import { Link } from "react-router-dom";
 
 function ProductWidget({ currentProduct }) {
-  const { data, reFetch } = useFetch(
+  const { data } = useFetch(
     `/product/sellerProducts/${currentProduct?.userId}?sort=-createdAt`
   );
   const [hasMoved, setHasMoved] = useState(false);
@@ -59,13 +59,7 @@ function ProductWidget({ currentProduct }) {
               {data?.products
                 .filter(p => p._id !== currentProduct?._id)
                 .map(product => (
-                  <Card
-                    product={product}
-                    cardSm={true}
-                    key={product._id}
-                    showFavorite={true}
-                    reFetch={reFetch}
-                  />
+                  <Card product={product} cardSm={true} key={product._id} />
                 ))}
             </div>
 

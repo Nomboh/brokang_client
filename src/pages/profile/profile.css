@@ -1,0 +1,116 @@
+.profile_container {
+  display: flex;
+  gap: 50px;
+}
+.profile_left {
+  flex: 2;
+}
+.profile_right {
+  margin-bottom: 50px;
+  flex: 5;
+}
+
+.profile_form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.profile_form_wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile_label_wrapper {
+  flex: 1;
+  width: 100%;
+  align-self: flex-start;
+}
+
+.profile_input_wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.profile_input_btn {
+  flex: 3;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile_btn_wrapper {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile_input {
+  padding: 10px 20px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 18px;
+  outline: none;
+}
+
+.profile_btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid #e95e51;
+  background-color: white;
+  color: #e95e51;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.profile_label {
+  font-size: 18px;
+}
+
+.profile_btn.profile_btn_cancel {
+  border-color: #9c9c9c;
+  color: #9c9c9c;
+}
+
+.profile_btn_wrapper {
+  flex: 1;
+}
+
+.p_email {
+  width: 100%;
+}
+
+.p_input {
+  width: 100%;
+  flex: 4;
+}
+
+.p_password {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile_file_o {
+  display: none;
+}
+
+.profile_photo_label {
+  height: 150px;
+  width: 150px;
+  border-radius: 100px;
+  display: inline-block;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.profile_img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}

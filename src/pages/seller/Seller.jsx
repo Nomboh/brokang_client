@@ -19,7 +19,7 @@ function Seller() {
   const [page, setPage] = useState(1);
   const sellerId = useLocation().pathname.split("/")[2];
   const limit = 6;
-  const { data } = useFetch(
+  const { data, reFetch } = useFetch(
     `/product/sellerProducts/${sellerId}?sort=-createdAt&search=${searchQuery}&page=${page}&limit=${limit}`
   );
 
@@ -71,7 +71,14 @@ function Seller() {
               <div className="grid_items">
                 {data &&
                   data?.products.map(product => {
-                    return <Card product={product} key={product._id} />;
+                    return (
+                      <Card
+                        product={product}
+                        key={product._id}
+                        reFetch={reFetch}
+                        showFavorite={true}
+                      />
+                    );
                   })}
               </div>
             </div>

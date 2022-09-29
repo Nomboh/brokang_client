@@ -134,3 +134,22 @@
   color: #000;
   font-weight: 700;
 }
+
+.info_settings_wrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.info_setting {
+  border: 1px solid #9c9c9c;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.info_setting:hover {
+  border-color: #e95e51;
+  color: #e95e51;
+}

@@ -12,6 +12,7 @@ import Store from "./pages/store/Store";
 import Follow from "./pages/follow/Follow";
 import Follower from "./pages/follower/Follower";
 import Following from "./pages/following/Following";
+import Profile from "./pages/profile/Profile";
 
 function App() {
   const { user } = useAuth();
@@ -31,6 +32,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/seller/:id" element={<Seller />} />
           <Route path="/store" element={<Store />} />
+          <Route path="/profile" element={<Profile />} />
           <Route element={<Follow />}>
             <Route path="follower" element={<Follower />} />
             <Route path="following" element={<Following />} />

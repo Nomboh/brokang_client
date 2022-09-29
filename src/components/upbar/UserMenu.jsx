@@ -32,7 +32,10 @@ function UserMenu({ anchorEl, setAnchorEl }) {
         <Link to={"/store"}>
           <MenuItem onClick={handleClose}>Store</MenuItem>
         </Link>
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <Link to={"/profile"}>
+          {" "}
+          <MenuItem onClick={handleClose}>Profile</MenuItem>
+        </Link>
         <MenuItem onClick={handleClose}>My Account</MenuItem>
         <MenuItem onClick={handleClose}>Transactions</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>

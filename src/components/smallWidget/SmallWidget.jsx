@@ -160,6 +160,14 @@ function SmallWidget({ userId, numberOfProducts, buttons, follow }) {
         <StarIcon className="sw_star" />
         <StarIcon className="sw_star" />
       </div>
+
+      {follow && (
+        <div className="info_settings_wrapper">
+          <Link to="/profile">
+            <button className="info_setting">User Info Settings</button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }
