@@ -17,6 +17,7 @@ import { useProduct } from "../../context/productContext";
 
 function SmallWidget({ userId, numberOfProducts, buttons, follow }) {
   const { data: seller, reFetch } = useFetch("user/" + userId);
+  
 
   const [openNotification, setOpenNotification] = useState(false);
 
