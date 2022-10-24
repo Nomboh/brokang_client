@@ -28,6 +28,22 @@ function ProductDetail({ currentProduct }) {
     }
   };
 
+  const handlePay = () => {
+    navigate("/order");
+  };
+
+  const handleTalk = async () => {
+    try {
+      const { data } = await axiosInstance().post("conversation", {
+        userId: currentProduct?.userId,
+      });
+
+      navigate("/chat?conversation=" + data?._id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     setIsFavourite(currentProduct?.likes.includes(user?._id));
   }, [currentProduct, user?._id]);
@@ -192,8 +208,12 @@ function ProductDetail({ currentProduct }) {
               <FavoriteBorderIcon color="primary" />
             )}
           </div>
-          <button className="pd_btn_talk">Brokang Talk</button>
-          <button className="pd_btn_pay">Brokang Pay</button>
+          <button onClick={handleTalk} className="pd_btn_talk">
+            Brokang Talk
+          </button>
+          <button onClick={handlePay} className="pd_btn_pay">
+            Brokang Pay
+          </button>
         </div>
       </div>
     </div>

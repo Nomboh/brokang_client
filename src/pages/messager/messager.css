@@ -1,0 +1,285 @@
+.chat {
+  background-color: #fce7e5;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat_container {
+  border-radius: 10px;
+  border: 2px solid white;
+  height: 90%;
+  width: 70%;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.chat_main {
+  flex: 2;
+}
+
+.sidebar_container {
+  flex: 1;
+  background-color: #8c3831;
+}
+
+/* nav bar  */
+
+.logo {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  height: 60px;
+  background-color: #692a24;
+}
+
+.nb_photo {
+  height: 40px;
+  width: 40px;
+  border-radius: 50px;
+  object-fit: cover;
+}
+.nb_user {
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.nb_user span {
+  color: #fdefee;
+}
+
+/* chats  */
+
+.chats {
+  margin: 10px 0px;
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.chats:hover {
+  background-color: #692a24;
+}
+
+.chats_active {
+  background-color: #692a24;
+}
+
+.chat_info_name {
+  font-size: 18px;
+  color: #fdefee;
+}
+
+.chat_info_msg {
+  font-size: 14px;
+  color: #fdefee;
+}
+
+.chats_img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  object-fit: cover;
+}
+
+/* chat */
+
+.chat_header {
+  height: 60px;
+  background-color: #af473d;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.chat_name {
+  margin-left: 20px;
+  color: #fdefee;
+}
+
+/* messages */
+.messages {
+  background-color: #fdefee;
+  height: calc(100% - 110px);
+  padding: 10px;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px #fce7e5;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #ee897f;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #e95e51;
+}
+
+/* inputs */
+
+.input {
+  height: 50px;
+  background-color: white;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat_input {
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+.chat_input::placeholder {
+  color: #9c9c9c;
+}
+
+.send {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat_btn {
+  padding: 5px 10px;
+  border: 3px solid #ee897f;
+  background-color: #e95e51;
+  border-radius: 5px;
+  color: #fdefee;
+  cursor: pointer;
+}
+
+/* message */
+
+.message {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.message_content .message_text {
+  background-color: white;
+}
+
+.message.owner {
+  flex-direction: row-reverse;
+}
+
+.message.owner p {
+  background-color: #e95e51;
+  color: #fdefee;
+  border-radius: 10px 0 10px 10px;
+}
+
+.message.owner .message_content {
+  align-items: flex-end;
+}
+
+.message_info {
+  display: flex;
+  flex-direction: column;
+  color: gray;
+  font-weight: 300;
+}
+
+.message_info img {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.message_info span {
+  font-size: 12px;
+}
+
+.message_content {
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message_content p {
+  background-color: #fdefee;
+  padding: 10px 20px;
+  border-radius: 0 10px 10px 10px;
+  max-width: max-content;
+}
+
+.message_content img {
+  width: 50%;
+}
+
+.close_chat {
+  display: none;
+}
+
+.ch_list {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .chat_container {
+    height: 100vh;
+    width: 100%;
+    display: block;
+  }
+
+  .sidebar_container {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s;
+  }
+
+  .sidebar_container.sidebar_container_active {
+    left: 0;
+  }
+
+  .messages {
+    height: calc(100vh - 110px);
+  }
+
+  .send {
+    gap: 10px;
+  }
+
+  .ch_list {
+    display: block;
+    font-size: 18px;
+    color: #f8cdc9;
+    font-weight: 600;
+    padding: 5px 10px;
+    border: 2px solid #ee897f;
+    border-radius: 10px;
+    align-items: center;
+    margin-right: 10px;
+  }
+}

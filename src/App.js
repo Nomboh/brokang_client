@@ -13,9 +13,17 @@ import Follow from "./pages/follow/Follow";
 import Follower from "./pages/follower/Follower";
 import Following from "./pages/following/Following";
 import Profile from "./pages/profile/Profile";
+import Order from "./pages/order/Order";
+import Success from "./pages/success/Success";
+import { Elements } from "@stripe/react-stripe-js";
+import { useProduct } from "./context/productContext";
+import Messager from "./pages/messager/Messager";
 
 function App() {
   const { user } = useAuth();
+
+  const { stripePromise } = useProduct();
+
   const theme = createTheme({
     palette: {
       primary: {
@@ -31,12 +39,59 @@ function App() {
           <Route path="/product/:id" element={<Product />} />
           <Route path="/login" element={<Login />} />
           <Route path="/seller/:id" element={<Seller />} />
-          <Route path="/store" element={<Store />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/success"
+            element={
+              <Elements stripe={stripePromise}>
+                {" "}
+                <Success />
+              </Elements>
+            }
+          />
+
+          <Route
+            path="/store"
+            element={
+              <ProtectedRoute isAllowed={!!user}>
+                <Store />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute isAllowed={!!user}>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/chat"
+            element={
+              <ProtectedRoute isAllowed={!!user}>
+                <Messager />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/order"
+            element={
+              <ProtectedRoute isAllowed={!!user}>
+                <Elements stripe={stripePromise}>
+                  <Order />
+                </Elements>
+              </ProtectedRoute>
+            }
+          />
+
           <Route element={<Follow />}>
             <Route path="follower" element={<Follower />} />
             <Route path="following" element={<Following />} />
           </Route>
+
           <Route
             path="/sell"
             element={
