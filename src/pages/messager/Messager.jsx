@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import "./messager.css";
 import Sidebar from "./Sidebar";
 import Chat from "./Chat";
-import { useAuth } from "../../context/auth/AuthContext";
 
 function Messager() {
-  const { user } = useAuth();
   const [active, setActive] = useState(false);
 
   return (

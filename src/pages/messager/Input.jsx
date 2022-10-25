@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import ImageIcon from "@mui/icons-material/Image";
-import axiosInstance from "../../utils/axiosInstance";
 
-function Input({ reFetchMsg, conversationId }) {
+function Input({ reFetchMsg }) {
   const [message, setMessage] = useState("");
 
   const handleSend = async () => {
-    const { data } = await axiosInstance().post("/message", {
-      conversationId,
-      text: message,
-    });
     reFetchMsg();
     setMessage("");
   };
