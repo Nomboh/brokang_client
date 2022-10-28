@@ -17,6 +17,8 @@ function UserMenu({ anchorEl, setAnchorEl }) {
 
   const handleLogout = () => {
     logoutCall(dispatch);
+    setPhoneMenu(false);
+    setAnchorEl(null);
   };
   return (
     <div>

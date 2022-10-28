@@ -77,7 +77,7 @@ function App() {
           />
 
           <Route
-            path="/order"
+            path="/order/:id"
             element={
               <ProtectedRoute isAllowed={!!user}>
                 <Elements stripe={stripePromise}>

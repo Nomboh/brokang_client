@@ -19,6 +19,11 @@ function Follow() {
 
   const path = location.pathname.split("/")[1];
 
+  const { data: followings, reFetch: reFollowings } =
+    useFetch("/user/followings");
+
+  const { data: followers, reFetch: reFollowers } = useFetch("/user/followers");
+
   return (
     <div className="container">
       <Upbar />
@@ -32,6 +37,10 @@ function Follow() {
             numberOfProducts={userProducts?.totalProducts}
             userId={user?._id}
             follow={true}
+            followings={followings}
+            followers={followers}
+            reFollowers={reFollowers}
+            reFollowings={reFollowings}
           />
         </div>
         <div className="follow_right">
@@ -48,7 +57,9 @@ function Follow() {
             </Link>
           </div>
 
-          <Outlet />
+          <Outlet
+            context={[followers, followings, reFollowings, reFollowers]}
+          />
         </div>
       </div>
       <Footer />

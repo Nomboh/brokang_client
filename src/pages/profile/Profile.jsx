@@ -17,6 +17,11 @@ function Profile() {
   const { user } = useAuth();
   const { data: userProducts } = useFetch("/product/userProducts");
 
+  const { data: followings, reFetch: reFollowings } =
+    useFetch("/user/followings");
+
+  const { data: followers, reFetch: reFollowers } = useFetch("/user/followers");
+
   const [index, setIndex] = useState(0);
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(100);
@@ -35,7 +40,7 @@ function Profile() {
     setIndex(i);
   };
 
-  const handleName = async (e) => {
+  const handleName = async e => {
     e.preventDefault();
 
     try {
@@ -54,7 +59,7 @@ function Profile() {
     }
   };
 
-  const handleEmail = async (e) => {
+  const handleEmail = async e => {
     e.preventDefault();
 
     try {
@@ -73,12 +78,12 @@ function Profile() {
     }
   };
 
-  const handleCancel = (e) => {
+  const handleCancel = e => {
     e.preventDefault();
     setIndex(0);
   };
 
-  const handlePassword = async (e) => {
+  const handlePassword = async e => {
     e.preventDefault();
 
     try {
@@ -110,11 +115,9 @@ function Profile() {
     }
   };
 
-  const changePassword = (e) => {
-    setPassword((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const changePassword = e => {
+    setPassword(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
-
-  console.log(password);
 
   useEffect(() => {
     const uploadFile = async () => {
@@ -150,6 +153,10 @@ function Profile() {
             numberOfProducts={userProducts?.totalProducts}
             follow={true}
             userId={user?._id}
+            followings={followings}
+            followers={followers}
+            reFollowers={reFollowers}
+            reFollowings={reFollowings}
           />
         </div>
         <div className="profile_right">
@@ -169,7 +176,7 @@ function Profile() {
                       type="file"
                       name="photo"
                       id="photo"
-                      onChange={(e) => setFile(e.target.files[0])}
+                      onChange={e => setFile(e.target.files[0])}
                     />
 
                     <label htmlFor="photo" className="profile_photo_label">
@@ -206,7 +213,7 @@ function Profile() {
                       value={name}
                       className="profile_input"
                       placeholder="Enter a New name"
-                      onChange={(e) => setName(e.target.value)}
+                      onChange={e => setName(e.target.value)}
                     />
                   </div>
 
@@ -233,7 +240,7 @@ function Profile() {
                   <div className="profile_btn_wrapper">
                     {index !== 1 && (
                       <button
-                        onClick={(e) => handleChange(e, 1)}
+                        onClick={e => handleChange(e, 1)}
                         className="profile_btn"
                       >
                         change
@@ -259,7 +266,7 @@ function Profile() {
                         id="email"
                         placeholder="change your email address"
                         className="profile_input"
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={e => setEmail(e.target.value)}
                       />
                     </div>
 
@@ -287,7 +294,7 @@ function Profile() {
                   <div className="profile_btn_wrapper">
                     {index !== 2 && (
                       <button
-                        onClick={(e) => handleChange(e, 2)}
+                        onClick={e => handleChange(e, 2)}
                         className="profile_btn"
                       >
                         change
@@ -296,7 +303,7 @@ function Profile() {
 
                     {index === 2 && (
                       <button
-                        onClick={(e) => handleCancel(e)}
+                        onClick={e => handleCancel(e)}
                         className="profile_btn profile_btn_cancel "
                       >
                         cancel

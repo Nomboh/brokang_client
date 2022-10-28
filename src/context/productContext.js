@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from "react";
-import useFetch from "../hooks/useFetch";
 import { loadStripe } from "@stripe/stripe-js";
 
 const ProductContext = createContext();
@@ -11,10 +10,6 @@ const stripePromise = loadStripe(
 const ProductContextProvider = ({ children }) => {
   const [phoneMenu, setPhoneMenu] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(null);
-  const { data: followings, reFetch: reFollowings } =
-    useFetch("/user/followings");
-
-  const { data: followers, reFetch: reFollowers } = useFetch("/user/followers");
 
   const [selectedChat, setSelectedChat] = useState(null);
   return (
@@ -24,10 +19,6 @@ const ProductContextProvider = ({ children }) => {
         setPhoneMenu,
         currentProduct,
         setCurrentProduct,
-        followings,
-        reFollowings,
-        followers,
-        reFollowers,
         stripePromise,
         selectedChat,
         setSelectedChat,

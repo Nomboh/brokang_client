@@ -6,14 +6,13 @@ import DoneIcon from "@mui/icons-material/Done";
 import React from "react";
 import { useAuth } from "../../context/auth/AuthContext";
 import axiosInstance from "../../utils/axiosInstance";
-import { useProduct } from "../../context/productContext";
 import { getProductQty } from "../../utils/helper";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 function Follower() {
   const { user } = useAuth();
 
-  const { followers: data, reFollowers, reFollowings } = useProduct();
+  const [followers, , reFollowings, reFollowers] = useOutletContext();
 
   const handleUnfollow = async userId => {
     try {
@@ -37,7 +36,7 @@ function Follower() {
 
   return (
     <div className="follower_container">
-      {data?.users.map(follower => {
+      {followers?.users.map(follower => {
         return (
           <div className="follow_list" key={follower._id}>
             <Link to={"/seller/" + follower._id}>
@@ -52,7 +51,9 @@ function Follower() {
                   <p className="fl_info_name">{follower.name}</p>
                   <p className="fl_info_qty">
                     Product{console.log(follower)}
-                    <span>({getProductQty(data?.stats, follower._id)})</span>
+                    <span>
+                      ({getProductQty(followers?.stats, follower._id)})
+                    </span>
                   </p>
                 </div>
               </div>

@@ -29,7 +29,7 @@ function ProductDetail({ currentProduct }) {
   };
 
   const handlePay = () => {
-    navigate("/order");
+    navigate("/order/" + currentProduct._id);
   };
 
   const handleTalk = async () => {

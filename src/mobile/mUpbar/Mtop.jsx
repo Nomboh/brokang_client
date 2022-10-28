@@ -29,7 +29,13 @@ function Mtop() {
             <MenuIcon onClick={() => setPhoneMenu(true)} />
           </div>
           <div className="mtop_middle">
-            <img src="/brokang_logo_svg.svg" alt="logo" className="mtop_img" />
+            <Link to={"/"}>
+              <img
+                src="/brokang_logo_svg.svg"
+                alt="logo"
+                className="mtop_img"
+              />
+            </Link>
           </div>
 
           <div className="mtop_right">

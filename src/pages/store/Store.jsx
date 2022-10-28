@@ -41,6 +41,11 @@ function Store() {
 
   const { data: userProducts } = useFetch("/product/userProducts");
 
+  const { data: followings, reFetch: reFollowings } =
+    useFetch("/user/followings");
+
+  const { data: followers, reFetch: reFollowers } = useFetch("/user/followers");
+
   return (
     <div className="container">
       <Upbar />
@@ -53,6 +58,10 @@ function Store() {
             numberOfProducts={userProducts?.totalProducts}
             userId={user._id}
             follow={true}
+            followings={followings}
+            followers={followers}
+            reFollowers={reFollowers}
+            reFollowings={reFollowings}
           />
         </div>
 

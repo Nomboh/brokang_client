@@ -13,15 +13,21 @@ import NotificationAddIcon from "@mui/icons-material/NotificationAdd";
 import { useAuth } from "../../context/auth/AuthContext";
 import axiosInstance from "../../utils/axiosInstance";
 import { toast, ToastContainer } from "react-toastify";
-import { useProduct } from "../../context/productContext";
 
-function SmallWidget({ userId, numberOfProducts, buttons, follow }) {
+function SmallWidget({
+  userId,
+  numberOfProducts,
+  buttons,
+  follow,
+  followings,
+  followers,
+  reFollowings,
+  reFollowers,
+}) {
   const { data: seller, reFetch } = useFetch("user/" + userId);
-  
 
   const [openNotification, setOpenNotification] = useState(false);
 
-  const { followings, followers, reFollowings } = useProduct();
   const { user } = useAuth();
 
   const handleFollow = async () => {
@@ -29,6 +35,7 @@ function SmallWidget({ userId, numberOfProducts, buttons, follow }) {
       const { data } = await axiosInstance().put(`user/follow/${userId}`);
       if (data.status === "success") {
         reFollowings();
+        reFollowers();
         reFetch();
       }
     } catch (error) {
@@ -47,6 +54,7 @@ function SmallWidget({ userId, numberOfProducts, buttons, follow }) {
       const { data } = await axiosInstance().put(`user/unfollow/${userId}`);
       if (data.status === "success") {
         reFollowings();
+        reFollowers();
         reFetch();
       }
     } catch (error) {

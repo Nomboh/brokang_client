@@ -4,12 +4,11 @@ import React from "react";
 import { Avatar } from "@mui/material";
 import DoneIcon from "@mui/icons-material/Done";
 import axiosInstance from "../../utils/axiosInstance";
-import { useProduct } from "../../context/productContext";
 import { getProductQty } from "../../utils/helper";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 function Following() {
-  const { followings: data, reFollowings, reFollowers } = useProduct();
+  const [, followings, reFollowings, reFollowers] = useOutletContext();
 
   const handleUnfollow = async userId => {
     try {
@@ -23,7 +22,7 @@ function Following() {
 
   return (
     <div className="following_container">
-      {data?.users.map(user => {
+      {followings?.users.map(user => {
         return (
           <div className="follow_list" key={user._id}>
             <Link to={"/seller/" + user._id}>
@@ -36,7 +35,8 @@ function Following() {
                 <div className="info_details">
                   <p className="fl_info_name">{user.name}</p>
                   <p className="fl_info_qty">
-                    Product <span>({getProductQty(data.stats, user._id)})</span>
+                    Product{" "}
+                    <span>({getProductQty(followings.stats, user._id)})</span>
                   </p>
                 </div>
               </div>

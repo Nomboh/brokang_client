@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Bellowbar from "../../components/bellowbar/Bellowbar";
 import Footer from "../../components/footer/Footer";
 import Upbar from "../../components/upbar/Upbar";
@@ -14,14 +14,23 @@ import { Elements, useElements, useStripe } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
 import useFetch from "../../hooks/useFetch";
 import { KeyboardArrowDown, KeyboardArrowRight } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Order() {
-  const { currentProduct } = useProduct();
-  const { stripePromise } = useProduct();
+  const { currentProduct, stripePromise, setCurrentProduct } = useProduct();
   const { user } = useAuth();
 
   const navigate = useNavigate();
+
+  const { id } = useParams();
+
+  const { data: buyProduct } = useFetch(`/product/${id}`);
+
+  useEffect(() => {
+    if (!currentProduct && buyProduct) {
+      setCurrentProduct(buyProduct.product);
+    }
+  }, [currentProduct, buyProduct, setCurrentProduct]);
 
   const stripe = useStripe();
   const elements = useElements();
@@ -151,8 +160,6 @@ function Order() {
     );
   };
 
-  console.log(data);
-
   return (
     <div className="container">
       <Upbar />
@@ -235,9 +242,7 @@ function Order() {
 
         <div className="op_wrapper">
           <div className="op_left">
-            <h3 className="order_header" style={{ textAlign: "left" }}>
-              Payment Methods
-            </h3>
+            <h3 className="order_header order_header_left">Payment Methods</h3>
             <div className="op_methods_wrapper">
               {paymentMethods.map((pm, i) => (
                 <div
