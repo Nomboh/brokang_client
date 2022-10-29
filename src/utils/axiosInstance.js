@@ -1,7 +1,7 @@
 import axios from "axios";
 const axiosInstance = () =>
   axios.create({
-    baseURL: "https://brokang-api.herokuapp.com/api/v1",
+    baseURL: process.env.REACT_APP_BROKANG_URL,
     withCredentials: true,
     headers: {
       "Access-Control-Allow-Origin": "*",
