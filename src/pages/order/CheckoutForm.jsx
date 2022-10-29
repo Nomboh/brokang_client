@@ -6,7 +6,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { CircularProgress } from "@mui/material";
 
-function CheckoutForm() {
+function CheckoutForm({ handleChange }) {
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -47,6 +47,18 @@ function CheckoutForm() {
   return (
     <form className="checkout_form" id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" />
+      <div className="check_wrapper">
+        <input
+          type={"checkbox"}
+          className="checkbox"
+          id="checkbox"
+          onChange={handleChange}
+        />
+
+        <label htmlFor="checkbox" className="checkbox_label">
+          Save this card
+        </label>
+      </div>
       <button
         disabled={isLoading || !stripe || !elements}
         className="checkout_btn"

@@ -25,23 +25,25 @@ function Order() {
   const { id } = useParams();
 
   const { data: buyProduct } = useFetch(`/product/${id}`);
-
-  useEffect(() => {
-    if (!currentProduct && buyProduct) {
-      setCurrentProduct(buyProduct.product);
-    }
-  }, [currentProduct, buyProduct, setCurrentProduct]);
-
   const stripe = useStripe();
   const elements = useElements();
 
   const [index, setIndex] = useState(0);
+
+  const [isSaved, setIsSaved] = useState(false);
+
   const [active, setActive] = useState(false);
+
   const [contact, setContact] = useState("");
+
   const [name, setName] = useState("");
+
   const [address, setAddress] = useState(null);
+
   const [clientSecret, setClientSecret] = useState("");
+
   const [card, setCard] = useState(null);
+
   const [cardName, setCardName] = useState("choose a saved card");
 
   const appearance = {
@@ -50,37 +52,20 @@ function Order() {
       colorPrimary: "#e95e51",
     },
   };
+
   const options = {
     clientSecret,
     appearance,
   };
 
+  useEffect(() => {
+    if (!currentProduct && buyProduct) {
+      setCurrentProduct(buyProduct.product);
+    }
+  }, [currentProduct, buyProduct, setCurrentProduct]);
+
   const handlePayMethod = (e, i) => {
     setIndex(i);
-  };
-
-  const makePayment = async () => {
-    if (index === 2) {
-      const { data } = await axiosInstance().post(
-        "/stripe/create-payment-intent",
-        {
-          item: currentProduct,
-          description: `Payment intent for ${currentProduct?.name}`,
-          receipt_email: user.email,
-          shipping: {
-            address: {
-              line1: address.split(",")[0],
-              city: address.split(",")[3],
-              country: address.split(",")[-1],
-            },
-            name: name || user.name,
-            phone: contact || user.phone,
-          },
-        }
-      );
-
-      setClientSecret(data.clientSecret);
-    }
   };
 
   const payWithSaved = async () => {
@@ -159,6 +144,38 @@ function Order() {
       </div>
     );
   };
+
+  const handleChange = e => {
+    setIsSaved(e.target.checked);
+  };
+
+  useEffect(() => {
+    const payment = async () => {
+      const url = !isSaved
+        ? "/stripe/create-payment-intent"
+        : "/stripe/payment";
+
+      if (index === 2 && name && contact && address) {
+        const { data } = await axiosInstance().post(url, {
+          item: currentProduct,
+          description: `Payment intent for ${currentProduct?.name}`,
+          receipt_email: user.email,
+          shipping: {
+            address: {
+              line1: address.split(",")[0],
+              city: address.split(",")[3],
+              country: address.split(",")[-1],
+            },
+            name: name || user.name,
+            phone: contact || user.phone,
+          },
+        });
+        setClientSecret(data.clientSecret);
+      }
+    };
+
+    payment();
+  }, [isSaved, index, user, name, address, contact, currentProduct]);
 
   return (
     <div className="container">
@@ -289,27 +306,25 @@ function Order() {
                   <p className="summary_total">
                     {(
                       paymentMethods[index].price +
-                      parseInt(currentProduct?.shipping[0].deliveryFee) +
+                      parseInt(
+                        currentProduct?.shipping[0].deliveryFee ===
+                          "free Shipping"
+                          ? 0
+                          : currentProduct?.shipping[0].deliveryFee
+                      ) +
                       currentProduct?.price
                     ).toLocaleString()}{" "}
                     won
                   </p>
                 </div>
               </div>
-              <button
-                disabled={!(!!name && !!contact && !!address)}
-                onClick={makePayment}
-                className="op_summary_btn"
-              >
-                make a payment
-              </button>
             </div>
           </div>
         </div>
 
         {clientSecret && (
           <Elements options={options} stripe={stripePromise}>
-            <CheckoutForm />
+            <CheckoutForm handleChange={handleChange} />
           </Elements>
         )}
       </div>
