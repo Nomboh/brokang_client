@@ -18,7 +18,7 @@ function SearchAddress({ setAddress }) {
   };
 
   const handleSelect =
-    ({ description }) =>
+    ({ description }, main_text, secondary_text) =>
     () => {
       setValue(description, false);
       clearSuggestions();
@@ -28,7 +28,14 @@ function SearchAddress({ setAddress }) {
         console.log(("Coordinates : ", { lat, lng }));
       });
 
-      setAddress(description);
+      const add = secondary_text.split(",");
+
+      setAddress({
+        main_text,
+        city: add.length >= 2 ? add[0] : "",
+        country: add[add.length - 1],
+        secondary_text,
+      });
     };
 
   const renderSuggestions = () =>
@@ -42,7 +49,7 @@ function SearchAddress({ setAddress }) {
         <li
           className="oa_list_items"
           key={place_id}
-          onClick={handleSelect(suggestion)}
+          onClick={handleSelect(suggestion, main_text, secondary_text)}
         >
           <strong>{main_text}</strong> <small>{secondary_text}</small>
         </li>

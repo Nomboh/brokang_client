@@ -6,6 +6,7 @@ import Mmenu from "../../mobile/mmenu/Mmenu";
 import Mtop from "../../mobile/mUpbar/Mtop";
 import "./success.css";
 import { useStripe } from "@stripe/react-stripe-js";
+import { Link } from "react-router-dom";
 
 function Success() {
   const stripe = useStripe();
@@ -49,7 +50,17 @@ function Success() {
       <Mtop />
       <Mmenu />
       <div className="success_container">
-        <h1>{message}</h1>
+        <div className="success_wrapper">
+          <h1>{message}</h1>
+
+          <Link to={"/"}>
+            <div className="btn_success">Continue Shopping</div>
+          </Link>
+
+          <Link to={"/transaction"}>
+            <div className="btn_transaction">Go To List Of Transactions</div>
+          </Link>
+        </div>
       </div>
       <Footer />
     </div>

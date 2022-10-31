@@ -38,7 +38,9 @@ function ProductDetail({ currentProduct }) {
         userId: currentProduct?.userId,
       });
 
-      navigate("/chat?conversation=" + data?._id);
+      if (data.status === "success") {
+        navigate("/chat?conversation=" + data.conversation._id);
+      }
     } catch (error) {
       console.log(error);
     }

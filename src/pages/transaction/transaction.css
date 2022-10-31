@@ -1,0 +1,161 @@
+.transaction_heading {
+  color: rgb(48, 48, 48);
+  margin-bottom: 30px;
+}
+
+.order_main {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+
+  display: flex;
+}
+
+.order_main_left {
+  flex: 2;
+  padding: 20px;
+  border-right: 1px solid #e0e0e0;
+}
+
+.order_main_right {
+  flex: 1;
+  padding: 20px;
+}
+
+.order_header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order_content {
+  display: flex;
+  gap: 20px;
+}
+
+.order_container_tran {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.order_left {
+  height: 150px;
+  width: 150px;
+}
+
+.order_left img {
+  height: auto;
+  width: 100%;
+  border-radius: 5px;
+  object-fit: contain;
+}
+
+.order_des {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.order_price_t {
+  font-size: 16px;
+  margin: 10px 0;
+  color: #757575;
+  font-weight: 300;
+}
+
+.btn_order_chat {
+  padding: 10px 20px;
+  border: 1px solid #e0e0e0;
+  background-color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+}
+
+.payment_header {
+  text-align: center;
+}
+
+.payment_wrapper {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.payment_left {
+  flex: 1;
+}
+
+.payment_right {
+  flex: 3;
+}
+
+.payment_header {
+  margin-bottom: 10px;
+}
+
+.order_date_sm,
+.order_des_sm,
+.btn_order_chat.btn_order_more .order_main_right.order_main_right_sm {
+  display: none;
+}
+
+.order_date,
+.order_des {
+  display: block;
+}
+
+.tran_btn_wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 600px) {
+  .order_main {
+    flex-direction: column;
+  }
+
+  .order_des {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .order_left {
+    height: 80px;
+    width: 80px;
+  }
+
+  .order_left img {
+    height: 100%;
+    width: 80px;
+    border-radius: 5px;
+    object-fit: contain;
+  }
+
+  .order_date_sm,
+  .order_des_sm,
+  .btn_order_chat.btn_order_more,
+  .order_main_right.order_main_right_sm {
+    display: block;
+  }
+
+  .btn_order_chat.btn_order_more {
+    border-color: #f8cdc9;
+    color: #e95e51;
+  }
+
+  .order_date,
+  .order_des,
+  .order_main_right {
+    display: none;
+  }
+
+  .order_main_left,
+  .order_main_right {
+    padding: 10px;
+  }
+
+  .btn_order_chat {
+    padding: 8px 12px;
+  }
+}

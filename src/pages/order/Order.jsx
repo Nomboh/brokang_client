@@ -77,9 +77,10 @@ function Order() {
         payment_method_id: card,
         shipping: {
           address: {
-            line1: address.split(",")[0],
-            city: address.split(",")[3],
-            country: address.split(",")[-1],
+            line1: address.main_text,
+            line2: address.secondary_text,
+            city: address.city,
+            country: address.country,
           },
           name: user.name,
           phone: user.phone,
@@ -162,9 +163,10 @@ function Order() {
           receipt_email: user.email,
           shipping: {
             address: {
-              line1: address.split(",")[0],
-              city: address.split(",")[3],
-              country: address.split(",")[-1],
+              line1: address.main_text,
+              line2: address.secondary_text,
+              city: address.city,
+              country: address.country,
             },
             name: name || user.name,
             phone: contact || user.phone,

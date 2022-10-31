@@ -8,9 +8,9 @@ function Chats({ conversation }) {
 
   return (
     <div className="chats">
-      <img src={seller[0].photo} alt={seller[0].name} className="chats_img" />
+      <img src={seller[0]?.photo} alt={seller[0]?.name} className="chats_img" />
       <div className="chats_info-container">
-        <h4 className="chat_info_name">{seller[0].name}</h4>
+        <h4 className="chat_info_name">{seller[0]?.name}</h4>
         <span className="chat_info_msg">
           {conversation.latestMessage?.text}
         </span>

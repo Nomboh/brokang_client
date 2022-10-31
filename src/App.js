@@ -18,6 +18,7 @@ import Success from "./pages/success/Success";
 import { Elements } from "@stripe/react-stripe-js";
 import { useProduct } from "./context/productContext";
 import Messager from "./pages/messager/Messager";
+import Transaction from "./pages/transaction/Transaction";
 
 function App() {
   const { user } = useAuth();
@@ -97,6 +98,15 @@ function App() {
             element={
               <ProtectedRoute isAllowed={!!user}>
                 <Sell />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/transaction"
+            element={
+              <ProtectedRoute isAllowed={!!user}>
+                <Transaction />
               </ProtectedRoute>
             }
           />

@@ -39,7 +39,9 @@ function UserMenu({ anchorEl, setAnchorEl }) {
           <MenuItem onClick={handleClose}>Profile</MenuItem>
         </Link>
         <MenuItem onClick={handleClose}>My Account</MenuItem>
-        <MenuItem onClick={handleClose}>Transactions</MenuItem>
+        <Link to="/transaction">
+          <MenuItem onClick={handleClose}>Transactions</MenuItem>
+        </Link>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </div>
