@@ -96,7 +96,8 @@
 
 .order_date_sm,
 .order_des_sm,
-.btn_order_chat.btn_order_more .order_main_right.order_main_right_sm {
+.btn_order_chat.btn_order_more,
+.order_main_right.order_main_right_sm {
   display: none;
 }
 
