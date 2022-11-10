@@ -12,7 +12,7 @@ const upLoadToFB = (file, fileName, subFolder, progress) => {
         const pro = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-        progress(pro);
+        progress = pro;
       },
       error => {
         reject(error);

@@ -8,11 +8,12 @@ import axiosInstance from "../../utils/axiosInstance";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import moment from "moment/moment";
 import { useNavigate } from "react-router-dom";
+import { useProduct } from "../../context/productContext";
 
 function ProductDetail({ currentProduct }) {
   const [index, setIndex] = useState(0);
   const [isFavourite, setIsFavourite] = useState(false);
-
+  const { setSelectedChat } = useProduct();
   const navigate = useNavigate();
 
   const { user } = useAuth();
@@ -38,9 +39,13 @@ function ProductDetail({ currentProduct }) {
         userId: currentProduct?.userId,
       });
 
-      if (data.status === "success") {
-        navigate("/chat?conversation=" + data.conversation._id);
-      }
+      console.log(data);
+
+      if (!data.friendInfo) return;
+
+      setSelectedChat(data);
+      navigate(`/chat?conversation=${currentProduct?.userId}`);
+      setSelectedChat(data);
     } catch (error) {
       console.log(error);
     }

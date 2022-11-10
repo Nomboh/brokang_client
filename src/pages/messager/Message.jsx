@@ -2,23 +2,31 @@ import moment from "moment";
 import React from "react";
 import { useAuth } from "../../context/auth/AuthContext";
 
+import { useProduct } from "../../context/productContext";
+
 function Message({ message }) {
   const { user } = useAuth();
+  const { selectedChat } = useProduct();
+
   return (
     <div
-      className={user._id === message.sender._id ? "message owner" : "message"}
+      className={user._id === message.senderId ? "message owner" : "message"}
     >
-      <div className="message_info">
-        <img src={message.sender.photo} alt={user.name} />
-
-        {user._id === message.sender._id && (
-          <span>{moment(message.createdAt).from()}</span>
-        )}
-      </div>
+      <img className="friend_img" src={selectedChat.friendInfo.photo} alt="" />
       <div className="message_content">
-        <p className="message_text">{message.text}</p>
+        {message.message.text ? (
+          <p className="message_text">{message.message.text}</p>
+        ) : (
+          <div className="mc_image">
+            <img src={message.message.image} alt={"chat"} />
+          </div>
+        )}
 
-        {/* <img src={user.photo} alt={"product photo"} /> */}
+        {user._id === message.senderId && (
+          <span className="msg_date">
+            {moment(message.createdAt).format("LT")}
+          </span>
+        )}
       </div>
     </div>
   );

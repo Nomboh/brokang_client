@@ -1,18 +1,18 @@
 import React from "react";
 import Navbar from "./Navbar";
 import Chats from "./Chats";
-import useFetch from "../../hooks/useFetch";
 import { useProduct } from "../../context/productContext";
-import { useSearchParams } from "react-router-dom";
 
-function Sidebar({ active, setActive }) {
-  const { data } = useFetch("/conversation");
+function Sidebar(props) {
+  const {
+    active,
+    setActive,
+    conversations,
+    handleSelectedConversation,
+    activeUser,
+  } = props;
 
-  const { setSelectedChat } = useProduct();
-
-  const [searchParams, setSearchParam] = useSearchParams();
-
-  const conversationId = searchParams.get("conversation");
+  const { selectedChat } = useProduct();
 
   return (
     <div
@@ -23,20 +23,18 @@ function Sidebar({ active, setActive }) {
       }
     >
       <Navbar setActive={setActive} />
-      {data &&
-        data?.map(conversation => (
+      {conversations &&
+        conversations?.map(conversation => (
           <div
             className={
-              conversationId === conversation._id ? "chats_active" : ""
+              selectedChat?.friendInfo._id === conversation?.friendInfo?._id
+                ? "chats_active"
+                : ""
             }
-            onClick={() => {
-              setSelectedChat(conversation);
-
-              setSearchParam({ conversation: conversation._id });
-            }}
-            key={conversation._id}
+            onClick={handleSelectedConversation(conversation)}
+            key={conversation.friendInfo?._id}
           >
-            <Chats conversationId={searchParams} conversation={conversation} />
+            <Chats conversation={conversation} activeUser={activeUser} />
           </div>
         ))}
     </div>

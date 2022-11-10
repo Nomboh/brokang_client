@@ -36,8 +36,6 @@ function Sell() {
 
   const [state, dispatch] = useReducer(createFormReducer, initialState);
 
-  console.log(state);
-
   const handleTag = e => {
     e.preventDefault();
 

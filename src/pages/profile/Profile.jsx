@@ -32,8 +32,6 @@ function Profile() {
     currentPassword: "",
   });
 
-  console.log(user);
-
   const handleChange = (e, i) => {
     e.preventDefault();
 
@@ -87,12 +85,8 @@ function Profile() {
     e.preventDefault();
 
     try {
-      const { data } = await axiosInstance().put(
-        "/auth/updatePassword",
-        password
-      );
+      await axiosInstance().put("/auth/updatePassword", password);
 
-      console.log(data);
       toast("Password update was successfull", {
         type: "success",
         closeOnClick: true,

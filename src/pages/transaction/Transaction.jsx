@@ -5,6 +5,7 @@ import Bellowbar from "../../components/bellowbar/Bellowbar";
 import Footer from "../../components/footer/Footer";
 import Upbar from "../../components/upbar/Upbar";
 import { useAuth } from "../../context/auth/AuthContext";
+import { useProduct } from "../../context/productContext";
 import useFetch from "../../hooks/useFetch";
 import Mmenu from "../../mobile/mmenu/Mmenu";
 import Mtop from "../../mobile/mUpbar/Mtop";
@@ -16,6 +17,7 @@ function Transaction() {
   const [transaction, setTransaction] = useState("");
   const [show, setShow] = useState(false);
   const { user } = useAuth();
+  const { setSelectedChat } = useProduct();
 
   const { data } = useFetch("/order/get-orders/" + user._id);
 
@@ -27,8 +29,10 @@ function Transaction() {
         userId: sellerId,
       });
 
-      if (data.status === "success") {
-        navigate("/chat?conversation=" + data.conversation._id);
+      if (data.friendInfo) {
+        setSelectedChat(data);
+        navigate("/chat?conversation=" + sellerId);
+        setSelectedChat(data);
       }
     } catch (error) {
       console.log(error);

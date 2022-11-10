@@ -50,7 +50,7 @@ function Follower() {
                 <div className="info_details">
                   <p className="fl_info_name">{follower.name}</p>
                   <p className="fl_info_qty">
-                    Product{console.log(follower)}
+                    Product
                     <span>
                       ({getProductQty(followers?.stats, follower._id)})
                     </span>
