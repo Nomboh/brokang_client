@@ -2,6 +2,7 @@ import React from "react";
 import Messages from "./Messages";
 import Input from "./Input";
 import { useProduct } from "../../context/productContext";
+import { Link } from "react-router-dom";
 
 function Chat(props) {
   const {
@@ -20,6 +21,10 @@ function Chat(props) {
     <div className="chat_main">
       <div className="chat_header">
         <h3 className="chat_name">{selectedChat?.friendInfo?.name}</h3>
+
+        <Link to={"/"}>
+          <img className="logo" src="/brokang_logo_svg.svg" alt="brokang" />
+        </Link>
 
         <p className="ch_list" onClick={() => setActive(true)}>
           Users

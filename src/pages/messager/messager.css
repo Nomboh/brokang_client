@@ -344,6 +344,7 @@
 
   .sidebar_container {
     position: absolute;
+    z-index: 1000;
     top: 0;
     left: -100%;
     width: 100%;
