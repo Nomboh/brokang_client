@@ -21,9 +21,9 @@ function Chat(props) {
       <div className="chat_header">
         <h3 className="chat_name">{selectedChat?.friendInfo?.name}</h3>
 
-        <p className="ch_list" onClick={() => setActive(true)}>
+        <button className="ch_list" onClick={() => setActive(true)}>
           Users
-        </p>
+        </button>
       </div>
       <Messages messages={messages} />
 
