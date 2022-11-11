@@ -26,9 +26,9 @@ function Chat(props) {
           <img className="logo" src="/brokang_logo_svg.svg" alt="brokang" />
         </Link>
 
-        <p className="ch_list" onClick={() => setActive(true)}>
+        <button className="ch_list" onClick={() => setActive(true)}>
           Users
-        </p>
+        </button>
       </div>
       <Messages messages={messages} />
 
