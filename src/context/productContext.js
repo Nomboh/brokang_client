@@ -10,8 +10,12 @@ const stripePromise = loadStripe(
 const ProductContextProvider = ({ children }) => {
   const [phoneMenu, setPhoneMenu] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(null);
+  const [subCatId, setSubCatId] = useState("");
 
   const [selectedChat, setSelectedChat] = useState(null);
+  const [selectedCat, setSelectedCat] = useState(null);
+  const [status, setstatus] = useState("");
+  const [search, setSearch] = useState("");
   return (
     <ProductContext.Provider
       value={{
@@ -22,6 +26,14 @@ const ProductContextProvider = ({ children }) => {
         stripePromise,
         selectedChat,
         setSelectedChat,
+        selectedCat,
+        setSelectedCat,
+        subCatId,
+        setSubCatId,
+        status,
+        setstatus,
+        search,
+        setSearch,
       }}
     >
       {children}

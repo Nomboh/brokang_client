@@ -4,17 +4,30 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Avatar, Badge } from "@mui/material";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth/AuthContext";
 import UserMenu from "./UserMenu";
+import { useProduct } from "../../context/productContext";
 
 function Upbar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const { user } = useAuth();
 
+  const { setSearch } = useProduct();
+  const navigate = useNavigate();
+
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handleSearch = event => {
+    if (event.keyCode === 13) {
+      setSearch(searchQuery);
+
+      setSearchQuery("");
+      navigate(`/search?q=${searchQuery}`);
+    }
   };
   return (
     <div className="upbar__container">
@@ -28,13 +41,20 @@ function Upbar() {
       <div className="upbar__middle">
         <SearchIcon
           color="action"
-          sx={{ position: "absolute", top: "5px", right: "10px" }}
+          sx={{
+            position: "absolute",
+            top: "12px",
+            right: "10px",
+            height: "30px",
+            width: "30px",
+          }}
         />
         <input
           type="text"
           className="upbar__searchInput"
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
+          onKeyDown={handleSearch}
           placeholder={"search for products"}
         />
       </div>

@@ -1,0 +1,14 @@
+.skeleton_container {
+  border-radius: 10px;
+  background-color: #f4f4f4;
+}
+
+.skeleton_img {
+  margin-bottom: 10px;
+}
+
+.skeleton_text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

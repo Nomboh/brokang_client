@@ -5,15 +5,29 @@ import { useProduct } from "../../context/productContext";
 import CloseIcon from "@mui/icons-material/Close";
 import UserMenu from "../../components/upbar/UserMenu";
 import { useAuth } from "../../context/auth/AuthContext";
+import useFetch from "../../hooks/useFetch";
+import { useNavigate } from "react-router-dom";
 
 function Mmenu() {
-  const { setPhoneMenu, phoneMenu } = useProduct();
+  const { setPhoneMenu, phoneMenu, setSelectedCat, setSubCatId } = useProduct();
+
+  const { data } = useFetch(`category`);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const { user } = useAuth();
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const navigate = useNavigate();
+
+  const handleCat = category => {
+    setSelectedCat(category);
+    navigate(`/search?category=${category._id}`);
+    setSelectedCat(category);
+    setSubCatId("");
+    setPhoneMenu(false);
   };
   return (
     <div
@@ -36,6 +50,18 @@ function Mmenu() {
         <span className="mmenu__span">Help</span>
         <span className="mmenu__span">Advertisement</span>
         <span className="mmenu__span">Chat</span>
+      </div>
+
+      <div className="cat_list">
+        <ul className="cat_list_items">
+          {data?.categories && data?.categories.length > 0
+            ? data.categories.map(cat => (
+                <li onClick={() => handleCat(cat)} key={cat._id}>
+                  {cat.alias}
+                </li>
+              ))
+            : ""}
+        </ul>
       </div>
 
       <CloseIcon

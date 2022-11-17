@@ -19,6 +19,8 @@ import { Elements } from "@stripe/react-stripe-js";
 import { useProduct } from "./context/productContext";
 import Messager from "./pages/messager/Messager";
 import Transaction from "./pages/transaction/Transaction";
+import { SkeletonTheme } from "react-loading-skeleton";
+import Search from "./pages/search/Search";
 
 function App() {
   const { user } = useAuth();
@@ -34,84 +36,88 @@ function App() {
   });
   return (
     <div className="App">
-      <ThemeProvider theme={theme}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/product/:id" element={<Product />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/seller/:id" element={<Seller />} />
-          <Route
-            path="/success"
-            element={
-              <Elements stripe={stripePromise}>
-                {" "}
-                <Success />
-              </Elements>
-            }
-          />
-
-          <Route
-            path="/store"
-            element={
-              <ProtectedRoute isAllowed={!!user}>
-                <Store />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute isAllowed={!!user}>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/chat"
-            element={
-              <ProtectedRoute isAllowed={!!user}>
-                <Messager />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/order/:id"
-            element={
-              <ProtectedRoute isAllowed={!!user}>
+      <SkeletonTheme baseColor="#e0e0e0" highlightColor="#f5f5f5">
+        <ThemeProvider theme={theme}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/product/:id" element={<Product />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/seller/:id" element={<Seller />} />
+            <Route
+              path="/success"
+              element={
                 <Elements stripe={stripePromise}>
-                  <Order />
+                  {" "}
+                  <Success />
                 </Elements>
-              </ProtectedRoute>
-            }
-          />
+              }
+            />
 
-          <Route element={<Follow />}>
-            <Route path="follower" element={<Follower />} />
-            <Route path="following" element={<Following />} />
-          </Route>
+            <Route
+              path="/store"
+              element={
+                <ProtectedRoute isAllowed={!!user}>
+                  <Store />
+                </ProtectedRoute>
+              }
+            />
 
-          <Route
-            path="/sell"
-            element={
-              <ProtectedRoute isAllowed={!!user}>
-                <Sell />
-              </ProtectedRoute>
-            }
-          />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute isAllowed={!!user}>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
 
-          <Route
-            path="/transaction"
-            element={
-              <ProtectedRoute isAllowed={!!user}>
-                <Transaction />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </ThemeProvider>
+            <Route
+              path="/chat"
+              element={
+                <ProtectedRoute isAllowed={!!user}>
+                  <Messager />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/order/:id"
+              element={
+                <ProtectedRoute isAllowed={!!user}>
+                  <Elements stripe={stripePromise}>
+                    <Order />
+                  </Elements>
+                </ProtectedRoute>
+              }
+            />
+
+            <Route element={<Follow />}>
+              <Route path="follower" element={<Follower />} />
+              <Route path="following" element={<Following />} />
+            </Route>
+
+            <Route path="search" element={<Search />} />
+
+            <Route
+              path="/sell"
+              element={
+                <ProtectedRoute isAllowed={!!user}>
+                  <Sell />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/transaction"
+              element={
+                <ProtectedRoute isAllowed={!!user}>
+                  <Transaction />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </ThemeProvider>
+      </SkeletonTheme>
     </div>
   );
 }

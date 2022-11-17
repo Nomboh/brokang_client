@@ -20,9 +20,10 @@
 }
 
 .upbar__searchInput {
-  padding: 10px 20px;
-  border-radius: 5px;
-  border-color: #ccc;
+  padding: 12px 25px;
+  border-radius: 25px;
+  border: 2px solid #ccc;
+  font-size: 18px;
   width: 300px;
 }
 

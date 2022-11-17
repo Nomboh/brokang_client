@@ -1,0 +1,99 @@
+.searchContainer {
+  display: flex;
+  gap: 30px;
+}
+.search_left {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.search_right {
+  flex: 4;
+}
+
+.search_cat,
+.search_condition {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.search_cat_title {
+  margin-bottom: 10px;
+}
+
+.search_cat_items {
+  color: #8c8c8c;
+}
+
+.search_cat_items:hover {
+  color: #232323;
+  cursor: pointer;
+}
+.no_search_products {
+  font-weight: 800;
+  width: 700px;
+  font-size: 50px;
+  color: #b2b2b2;
+}
+
+.search_condition_wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.search_condition_wrapper input {
+  height: 25px;
+  width: 25px;
+}
+
+@media only screen and (max-width: 600px) {
+  .search_condition {
+    display: none;
+  }
+
+  .searchContainer {
+    flex-direction: column;
+  }
+
+  .search_left {
+    flex-direction: row;
+    scrollbar-width: none;
+    overflow-x: scroll;
+  }
+
+  .search_left::-webkit-scrollbar {
+    display: none;
+  }
+
+  .search_cat {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .search_cat_items {
+    padding: 3px 10px;
+    border-radius: 50px;
+    border: 2px solid #9c9c9c;
+    width: max-content;
+  }
+
+  .search_cat_items:visited {
+    color: aquamarine;
+  }
+
+  .search_cat_title {
+    display: none;
+  }
+
+  .no_search_products {
+    font-weight: 800;
+    max-width: 400px;
+    width: 100%;
+    font-size: 20px;
+    color: #b2b2b2;
+  }
+}

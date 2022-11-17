@@ -268,6 +268,7 @@ function Messager() {
       "/conversation/" + conversation.friendInfo._id
     );
     setSelectedChat(data);
+    setActive(false);
   };
 
   //********send message handler*******

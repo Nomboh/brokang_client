@@ -14,6 +14,7 @@
   align-items: center;
   gap: 100px;
   flex: 5;
+  position: relative;
 }
 
 .bellow__middle {
@@ -27,6 +28,42 @@
 
 .bellow__span:hover {
   border-color: #e95e51;
+}
+
+.cat_btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.cat_btn_hover {
+  background-image: linear-gradient(to right, #e95e51, #e91e63);
+  color: white;
+  border-radius: 10px;
+}
+
+.cat_wrapper {
+  display: none;
+}
+
+.cat_btn_hover ~ .cat_wrapper {
+  display: block;
+  position: absolute;
+  bottom: -400px;
+  left: 10px;
+  height: 400px;
+  width: 1000px;
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 5000;
+  background-color: white;
+  box-shadow: 0 0 32px rgba(0, 0, 0, 0.277);
 }
 
 @media only screen and (max-width: 600px) {

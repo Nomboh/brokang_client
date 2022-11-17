@@ -2,6 +2,24 @@
   display: none;
 }
 
+.move_to_top {
+  position: fixed;
+  bottom: 50px;
+  right: 100px;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.home_cat_wrapper {
+  display: none;
+}
+
 @media only screen and (max-width: 600px) {
   .home_toSell {
     display: block;
@@ -17,5 +35,14 @@
     background-color: #e95e51;
     color: #fff;
     border: none;
+  }
+
+  .move_to_top {
+    bottom: 80px;
+    right: 20px;
+  }
+
+  .home_cat_wrapper {
+    display: block;
   }
 }
