@@ -37,9 +37,19 @@
   }
 
   .mtop_input {
+    border: none;
+    outline: none;
+  }
+
+  .m_top_wrapper{
     padding: 10px 20px;
-    border-color: #ccc;
+    border: 2px solid #ccc;
     border-radius: 80px;
     width: 80%;
+    display: flex;
+    align-items: center;
+
+    justify-content: space-between;
+
   }
 }

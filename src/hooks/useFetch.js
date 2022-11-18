@@ -48,11 +48,7 @@ function useFetch(url, route) {
     return () => {
       controller.abort();
     };
-  }, [
-    url,
-    setSelectedCat,
-    route /* selectedCat?._id, subCatId, status,  search*/,
-  ]);
+  }, [url, setSelectedCat, route]);
 
   const reFetch = async () => {
     setLoading(true);

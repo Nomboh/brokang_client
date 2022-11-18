@@ -89,7 +89,7 @@ function Search() {
                 })
               : ""}
 
-            {(search || query) && <h2 className="search_cat_title">{query}</h2>}
+            {(search || query) && <h2 className="search_cat_title search_cat_title_sm ">{query}</h2>}
           </div>
           <div className="search_condition">
             <h2 className="search_cat_title">Product condition</h2>

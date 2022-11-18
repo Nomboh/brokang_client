@@ -17,17 +17,27 @@ function Upbar() {
   const { setSearch, setSelectedCat } = useProduct();
   const navigate = useNavigate();
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleSearch = event => {
+  const handleClickSearch = () => {
+    setSearch(searchQuery);
+
+    setSearchQuery("");
+
+    setSelectedCat(null);
+
+    navigate(`/search?q=${searchQuery}`);
+  };
+
+  const handleSearch = (event) => {
     if (event.keyCode === 13) {
       setSearch(searchQuery);
 
       setSearchQuery("");
 
-      setSelectedCat(null)
+      setSelectedCat(null);
 
       navigate(`/search?q=${searchQuery}`);
     }
@@ -43,6 +53,7 @@ function Upbar() {
       </div>
       <div className="upbar__middle">
         <SearchIcon
+          onClick={handleClickSearch}
           color="action"
           sx={{
             position: "absolute",
@@ -56,7 +67,7 @@ function Upbar() {
           type="text"
           className="upbar__searchInput"
           value={searchQuery}
-          onChange={e => setSearchQuery(e.target.value)}
+          onChange={(e) => setSearchQuery(e.target.value)}
           onKeyDown={handleSearch}
           placeholder={"search for products"}
         />

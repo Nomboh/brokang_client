@@ -30,18 +30,30 @@ function Mtop() {
     }
   };
 
+  const handleClick = () => {
+    setSearch(searchQuery);
+
+    setSelectedCat(null);
+
+    setSearchQuery("");
+    navigate(`/search?q=${searchQuery}`);
+  };
+
   return (
     <div className="mTop">
       {isSearch ? (
         <div className="mtop_input_wrapper">
           <ArrowBackIcon onClick={() => setIsSearch(false)} />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyDown={handleSearch}
-            className="mtop_input"
-          />
+          <div className="m_top_wrapper">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleSearch}
+              className="mtop_input"
+            />
+            <SearchIcon color="action" onClick={handleClick} />
+          </div>
         </div>
       ) : (
         <>

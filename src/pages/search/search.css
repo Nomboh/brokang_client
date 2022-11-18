@@ -61,6 +61,7 @@
     flex-direction: row;
     scrollbar-width: none;
     overflow-x: scroll;
+    gap: 5px;
   }
 
   .search_left::-webkit-scrollbar {
@@ -71,7 +72,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
   }
 
   .search_cat_items {
@@ -81,19 +82,21 @@
     width: max-content;
   }
 
-  .search_cat_items:visited {
-    color: aquamarine;
-  }
-
-  .search_cat_title {
-    display: none;
-  }
-
+  
   .no_search_products {
     font-weight: 800;
     max-width: 400px;
     width: 100%;
     font-size: 20px;
     color: #b2b2b2;
+  }
+
+  .search_cat_title{
+    display: none;
+  }
+
+  .search_cat_title.search_cat_title_sm {
+    margin-bottom: 0px;
+    display: block;
   }
 }
