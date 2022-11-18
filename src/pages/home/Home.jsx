@@ -24,19 +24,23 @@ function Home() {
     threshold: 0,
   });
 
-  const { loading, accData } = useFetch(
+  const { loading, accData, hasMore } = useFetch(
     `/product?sort=-createdAt&page=${page}&limit=${12}`
   );
 
   useEffect(() => {
-    if (inView) {
-      setpage(prev => prev + 1);
+    if (inView && hasMore) {
+      setpage((prev) => prev + 1);
     }
-  }, [inView]);
+  }, [inView, hasMore]);
 
   const goToTop = () => {
     window.scrollTo({ top: 0 });
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, []);
 
   const { user } = useAuth();
 
@@ -57,8 +61,8 @@ function Home() {
 
           {accData && accData?.length > 0
             ? accData
-                .filter(p => p.userId !== user?._id)
-                .map(product => {
+                .filter((p) => p.userId !== user?._id)
+                .map((product) => {
                   return <Card key={product._id} product={product} />;
                 })
             : ""}

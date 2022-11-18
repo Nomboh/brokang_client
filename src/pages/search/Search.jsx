@@ -28,7 +28,11 @@ function Search() {
   const { user } = useAuth();
   useFetch("category/" + categoryId, "category");
 
-  const { accData: products, loading } = useFetch(
+  const {
+    accData: products,
+    loading,
+    hasMore,
+  } = useFetch(
     `product?category=${
       selectedCat || categoryId ? selectedCat?._id || categoryId : ""
     }&page=${page}&sort=-createdAt&subCategory=${
@@ -47,12 +51,12 @@ function Search() {
   };
 
   useEffect(() => {
-    if (inView) {
-      setPage(prev => prev + 1);
+    if (inView && hasMore) {
+      setPage((prev) => prev + 1);
     }
-  }, [inView]);
+  }, [inView, hasMore]);
 
-  const handleSubCats = id => {
+  const handleSubCats = (id) => {
     setSubCatId(id);
   };
 
@@ -67,9 +71,12 @@ function Search() {
       <div className="searchContainer">
         <div className="search_left">
           <div className="search_cat">
-            <h2 className="search_cat_title">{selectedCat?.alias}</h2>
+            {!search && (
+              <h2 className="search_cat_title">{selectedCat?.alias}</h2>
+            )}
+
             {selectedCat && selectedCat?.subCategories.length > 0
-              ? selectedCat?.subCategories.map(item => {
+              ? selectedCat?.subCategories.map((item) => {
                   return (
                     <p
                       onClick={() => handleSubCats(item._id)}
@@ -82,7 +89,7 @@ function Search() {
                 })
               : ""}
 
-            {query && <h2 className="search_cat_title">{query}</h2>}
+            {(search || query) && <h2 className="search_cat_title">{query}</h2>}
           </div>
           <div className="search_condition">
             <h2 className="search_cat_title">Product condition</h2>
@@ -98,7 +105,7 @@ function Search() {
                     checked={
                       item === status || (item === "all" && "" === status)
                     }
-                    onChange={e => setstatus(e.target.value)}
+                    onChange={(e) => setstatus(e.target.value)}
                   />
                   <label htmlFor={`search_check_${index}`}>{item}</label>
                 </div>
@@ -113,8 +120,8 @@ function Search() {
 
               {products && products?.length > 0 ? (
                 products
-                  .filter(p => p.userId !== user?._id)
-                  .map(product => {
+                  .filter((p) => p.userId !== user?._id)
+                  .map((product) => {
                     return <Card key={product._id} product={product} />;
                   })
               ) : (

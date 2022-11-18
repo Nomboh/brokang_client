@@ -14,7 +14,7 @@ function Upbar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const { user } = useAuth();
 
-  const { setSearch } = useProduct();
+  const { setSearch, setSelectedCat } = useProduct();
   const navigate = useNavigate();
 
   const handleClick = event => {
@@ -26,6 +26,9 @@ function Upbar() {
       setSearch(searchQuery);
 
       setSearchQuery("");
+
+      setSelectedCat(null)
+
       navigate(`/search?q=${searchQuery}`);
     }
   };

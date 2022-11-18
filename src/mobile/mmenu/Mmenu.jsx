@@ -16,17 +16,18 @@ function Mmenu() {
   const [anchorEl, setAnchorEl] = useState(null);
   const { user } = useAuth();
 
-  const handleClick = event => {
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   const navigate = useNavigate();
 
-  const handleCat = category => {
-    setSelectedCat(category);
-    navigate(`/search?category=${category._id}`);
+  const handleCat = (category) => {
     setSelectedCat(category);
     setSubCatId("");
+    navigate(`/search?category=${category._id}`);
+    setSelectedCat(category);
+
     setPhoneMenu(false);
   };
   return (
@@ -55,7 +56,7 @@ function Mmenu() {
       <div className="cat_list">
         <ul className="cat_list_items">
           {data?.categories && data?.categories.length > 0
-            ? data.categories.map(cat => (
+            ? data.categories.map((cat) => (
                 <li onClick={() => handleCat(cat)} key={cat._id}>
                   {cat.alias}
                 </li>
@@ -67,6 +68,7 @@ function Mmenu() {
       <CloseIcon
         sx={{ position: "absolute", top: "10px", right: "20px" }}
         onClick={() => setPhoneMenu(false)}
+        htmlColor="#f8cdc9"
       />
     </div>
   );

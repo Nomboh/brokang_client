@@ -9,19 +9,39 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useProduct } from "../../context/productContext";
 import { useAuth } from "../../context/auth/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Mtop() {
   const [isSearch, setIsSearch] = useState(false);
-  const { setPhoneMenu } = useProduct();
+  const { setPhoneMenu, setSearch, setSelectedCat } = useProduct();
   const { user } = useAuth();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    if (e.keyCode === 13) {
+      setSearch(searchQuery);
+
+      setSelectedCat(null);
+
+      setSearchQuery("");
+      navigate(`/search?q=${searchQuery}`);
+    }
+  };
 
   return (
     <div className="mTop">
       {isSearch ? (
         <div className="mtop_input_wrapper">
           <ArrowBackIcon onClick={() => setIsSearch(false)} />
-          <input type="text" className="mtop_input" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={handleSearch}
+            className="mtop_input"
+          />
         </div>
       ) : (
         <>

@@ -7,11 +7,13 @@ function useFetch(url, route) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [accData, setAccData] = useState([]);
-  const { setSelectedCat, subCatId, selectedCat, status } = useProduct();
+  const [hasMore, setHasMore] = useState(true);
+  const { setSelectedCat, subCatId, selectedCat, status, search } =
+    useProduct();
 
   useEffect(() => {
     setAccData([]);
-  }, [selectedCat?._id, subCatId, status]);
+  }, [selectedCat?._id, subCatId, status, search]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -24,7 +26,8 @@ function useFetch(url, route) {
 
         setData(res.data);
         if (res.data.products) {
-          setAccData(prev => [...prev, ...res.data.products]);
+          setAccData((prev) => [...prev, ...res.data.products]);
+          setHasMore(res.data.products.length > 0);
         }
         if (route === "category") {
           setSelectedCat(res.data.category);
@@ -45,7 +48,11 @@ function useFetch(url, route) {
     return () => {
       controller.abort();
     };
-  }, [url, selectedCat?._id, subCatId, status, route, setSelectedCat]);
+  }, [
+    url,
+    setSelectedCat,
+    route /* selectedCat?._id, subCatId, status,  search*/,
+  ]);
 
   const reFetch = async () => {
     setLoading(true);
@@ -58,7 +65,7 @@ function useFetch(url, route) {
     setLoading(false);
   };
 
-  return { data, loading, error, reFetch, accData };
+  return { data, loading, error, reFetch, accData, hasMore };
 }
 
 export default useFetch;

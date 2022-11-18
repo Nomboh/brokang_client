@@ -7,12 +7,13 @@ import { useProduct } from "../../context/productContext";
 function Category() {
   const { data } = useFetch(`category`);
 
-  const { setSelectedCat, setSubCatId } = useProduct();
+  const { setSelectedCat, setSubCatId, setSearch } = useProduct();
 
   const navigate = useNavigate();
 
-  const handleCat = category => {
+  const handleCat = (category) => {
     setSelectedCat(category);
+    setSearch("");
     navigate(`/search?category=${category._id}`);
     setSubCatId("");
   };
@@ -20,7 +21,7 @@ function Category() {
     <div className="cat_container">
       <div className="cat_top">
         {data?.categories && data?.categories.length > 0
-          ? data.categories.map(cat => {
+          ? data.categories.map((cat) => {
               return (
                 <div
                   key={cat._id}
